@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+      }
+
+      nav {
+        background-color: #333;
+        padding: 15px;
+        text-align: center;
+      }
+
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 15px;
+        font-size: 18px;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .content {
+     
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+      }
+      .content > a {
+        text-decoration: none;
+      }
+
+      .content:hover {
+        transform: scale(1.05);
+      }
+
+      .user-name {
+        color: #333;
+        margin-bottom: 8px;
+      }
+
+      .user-email,
+      .user-last-name {
+        color: #555;
+        margin-bottom: 4px;
+      }
+
+      .no-users {
+        color: #555;
+        text-align: center;
+        margin: 20px 0;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <nav>
+      <a href="/create-user">Create User</a>
+      <a href="/views/users">View Users</a>
+    </nav>
+    <section class="container">
+      <% if (users.length > 0) { %> <% users.forEach((user) => { %>
+      <article class="content">
+        <a href="http://localhost:2214/views/user/<%= user._id %>">
+          <h3 class="user-name"><%= user.firstName %></h3>
+          <p class="user-email"><%= user.email %></p>
+          <p class="user-last-name"><%= user.lastName %></p>
+        </a>
+      </article>
+      <% }); %> <% } else { %>
+      <p class="no-users">No users found.</p>
+      <% } %>
+    </section>
+  </body>
+</html>
